@@ -1,0 +1,31 @@
+.board {
+    background-color: #EFC49B;
+    border: 1.5em solid #D8A87B;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 1.5em;
+    padding: 1.5em;
+}
+
+.card_display {
+    background-color: white;
+    width: 200px;
+    height: 250px;
+}
+
+.add_card_btn {
+    width: 200px;
+    height: 250px;
+    background: #F7DEC7;
+    border: medium white dashed;
+    margin: 0;
+}
+
+.modal_close {
+    background-color: "#D60200";
+    color: "white"
+}

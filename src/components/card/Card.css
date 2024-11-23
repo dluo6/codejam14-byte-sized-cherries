@@ -47,7 +47,7 @@
 .front {
     z-index: 1;
     backface-visibility: hidden;
-    border-left: 3px solid black;
+    border-left: 1px solid #D8A87B;
 }
 
 .back {

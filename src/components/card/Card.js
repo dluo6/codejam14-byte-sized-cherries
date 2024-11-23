@@ -1,6 +1,6 @@
 // default have the card have 2 pages
 import "./Card.css"
-import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { useState } from "react";
 
 const Card = ({isAnimated}) => { 
@@ -108,7 +108,7 @@ const Card = ({isAnimated}) => {
         return (
             <div>
                 {curPage != 2 && <button id="next-btn" onClick={flipForward} style={{transform: nextBtnTransform}}>
-                    <HiArrowCircleRight />
+                    <HiArrowRight size={28} color="white"/>
                 </button>}
             </div>
         )
@@ -118,7 +118,7 @@ const Card = ({isAnimated}) => {
         return (
             <div>
                 {curPage != 0 && <button id="prev-btn" onClick={flipBackward} style={{transform: prevBtnTransform}}>
-                    <HiArrowCircleLeft />
+                    <HiArrowLeft size={28} color="white"/>
                 </button>}
             </div>
         )
