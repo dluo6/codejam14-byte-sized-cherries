@@ -19,12 +19,10 @@ const Card = ({ pages }) => {
   const firstPage = () => {
     return (
       <div>
-        {curPage != 2 && (
           <div id="p1" class={firstFlipped ? "flipped page" : "page"}>
             <div class="front">{front()}</div>
             <div class="back">{insideLeft()}</div>
           </div>
-        )}
       </div>
     );
   };
@@ -32,12 +30,10 @@ const Card = ({ pages }) => {
   const secondPage = () => {
     return (
       <div>
-        {curPage != 0 && (
           <div id="p2" class={secondFlipped ? "flipped page" : "page"}>
             <div class="front">{insideRight()}</div>
             <div class="back">{back()}</div>
           </div>
-        )}
       </div>
     );
   };

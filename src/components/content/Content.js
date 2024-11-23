@@ -4,6 +4,7 @@ import { useState } from "react"
 const Content = ({className}) => {
     const [editing, setEditing] = useState(false);
     const [mainContent, setMainContent] = useState('Placeholder');
+    const [tmpContent, setTmpContent] = useState('');
 
     const editPage = () => {
         setEditing(true);
@@ -11,6 +12,7 @@ const Content = ({className}) => {
 
     const stopEdit = () => {
         setEditing(false);
+        setMainContent(tmpContent);
     }
 
     const changeText = (e) => {
@@ -19,6 +21,7 @@ const Content = ({className}) => {
             setMainContent(e.target.value);
             setEditing(false);
         }
+        setTmpContent(e.target.value);
     }
 
     return(
@@ -28,8 +31,9 @@ const Content = ({className}) => {
                 {editing &&
                     <input
                         onKeyDown={changeText}
-                        placeholder="Press enter to save"
+                        placeholder="Start typing here..."
                         style={{padding: "1em", fontSize: "medium"}}
+                        autoFocus
                     />
                 }
             </div>
