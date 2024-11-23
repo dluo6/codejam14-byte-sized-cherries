@@ -1,38 +1,73 @@
 // default have the card have 2 pages
-import Page from "../page/Page";
 import "./Card.css"
 import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
+import { useState } from "react";
 
-const Card = ({isAnimated}) => {
+const Card = ({isAnimated}) => { 
+    const [curPage, setCurPage] = useState(0)
+    const [firstFlipped, setFirstFlipped] = useState(false)
+    const [secondFlipped, setSecondFlipped] = useState(false)
+    const [cardTransform, setCardTransform] = useState("translateX(0%")
+    const [prevBtnTransform, setPrevBtnTransform] = useState("translateX(0%)")
+    const [nextBtnTransform, setNextBtnTransform] = useState("translate(0%)")
 
-    const pages = [<Page frontIndex={4} backIndex={3}/>, <Page frontIndex={2} backIndex={1}/>];
-    // var z_index = 0;
-    var curPage = 0;
+    const front = () => <div id="f1" class="front-content">Front 1</div>
+    const insideLeft = () => <div id="b1" class="back-content">Inside Left</div>
+    const insideRight = () => <div id="f2" class="front-content">Inside Right</div>
+    const back = () => <div id="b2" class="back-content">Back</div>
 
-    // function addCard() {
-    //     pages.push(<Page frontIndex={z_index} backIndex={z_index-1} isAnimated={isAnimated}/>)
-    //     z_index -= 2
-    // }
-    var cardTranslateX = "0%";
-    var prevBtnTranslateX = "0%";
-    var nextBtnTranslateX = "0%"
+    const firstPage = () => {
+        return (
+            <div>
+                {curPage != 2 &&
+                <div id="p1" class={firstFlipped ? "flipped page" : "page"}>
+                    <div class="front">
+                        {front()}
+                    </div>
+                    <div class="back">
+                        {insideLeft()}
+                    </div>
+                </div>}
+            </div>
+        )
+    }
 
-    function openBook() {
+    const secondPage = () => {
+        return (
+            <div>
+                {curPage != 0 &&
+                <div id="p2" class={secondFlipped ? "flipped page" : "page"}>
+                    <div class="front">
+                        {insideRight()}
+                    </div>
+                    <div class="back">
+                        {back()}
+                    </div>
+                </div>
+                }
+            </div>
+        )
+    }
+
+    const openBook = () => {
         console.log('opening')
-        cardTranslateX = "50%";
-        prevBtnTranslateX = "-180px";
-        nextBtnTranslateX = "180px";
+        setCardTransform("translateX(50%)");
+        setPrevBtnTransform("translateX(-180px)");
+        setNextBtnTransform("translateX(180px)");
+        setFirstFlipped(true)
     }
     
-    function closeBook(isAtBeginning) {
+    const closeBook = (isAtBeginning) => {
         console.log('closing')
         if(isAtBeginning) {
-            cardTranslateX = "0%";
+            setCardTransform("translateX(0%)");
         } else {
-            cardTranslateX = "100%";
+            setCardTransform("translateX(100%)");
+            setSecondFlipped(false)
         }
-        prevBtnTranslateX = "0px";
-        nextBtnTranslateX = "0px";
+        console.log('setting button transform')
+        setPrevBtnTransform("translateX(0px)");
+        setNextBtnTransform("translateX(0px)");
         // prevBtn.style.transform = "translateX(0px)";
         // nextBtn.style.transform = "translateX(0px)";
     }
@@ -41,28 +76,59 @@ const Card = ({isAnimated}) => {
         console.log('flipping forward')
         if (curPage == 0) {
             openBook();
-        } else if (curPage == pages.length-1) {
-            closeBook(true);
+            setFirstFlipped(true)
+        } else {
+            closeBook(false);
+            setSecondFlipped(true)
         }
-        curPage++;
+        setCurPage(curPage + 1)
     };
 
     const flipBackward = () => {
-        curPage.flipPage();
-        curPage--;
+        if (curPage == 1) {
+            closeBook(true)
+            setFirstFlipped(false)
+        } else {
+            openBook()
+            setSecondFlipped(false)
+        }
+        setCurPage(curPage - 1)
     };
+
+    const renderPage = () => {
+        return (
+            <div className="card" style={{transform: cardTransform}}>
+                {firstPage()}
+                {secondPage()}
+            </div>
+        )
+    }
+
+    const renderNextButton = () => {
+        return (
+            <div>
+                {curPage != 2 && <button id="next-btn" onClick={flipForward} style={{transform: nextBtnTransform}}>
+                    <HiArrowCircleRight />
+                </button>}
+            </div>
+        )
+    }
+
+    const renderPrevButton = () => {
+        return (
+            <div>
+                {curPage != 0 && <button id="prev-btn" onClick={flipBackward} style={{transform: prevBtnTransform}}>
+                    <HiArrowCircleLeft />
+                </button>}
+            </div>
+        )
+    }
 
     return (
         <div className="body">
-            <button id="prev-btn" onClick={flipBackward} style={{translateX: {prevBtnTranslateX}}}>
-                <HiArrowCircleLeft />
-            </button>
-            <div className="card" style={{translateX: {cardTranslateX}}}>
-                {pages.map((page) => page)}
-            </div>
-            <button id="prev-btn" onClick={flipForward} style={{translateX: {nextBtnTranslateX}}}>
-                <HiArrowCircleRight />
-            </button>
+            {renderPrevButton()}
+            {renderPage()}
+            {renderNextButton()}            
         </div>
     );
 }
