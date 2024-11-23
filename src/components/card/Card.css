@@ -105,3 +105,11 @@ i {
 #p2 {
     z-index: 2;
 }
+
+#p1.flipped {
+    z-index: 1;
+}
+
+#p2.flipped {
+    z-index: 4;
+}

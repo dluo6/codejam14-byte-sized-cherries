@@ -3,26 +3,42 @@ import Card from "../card/Card";
 import "./Board.css"
 import { useState } from "react";
 import Modal from 'react-modal';
+import Content from "../content/Content";
 
 const Board = () => {
     const [cards, setCards] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedCard, setSelectedCard] = useState()
+    const [selectedCard, setSelectedCard] = useState();
 
     const displayCard = (card) => {
         return(
             <div
-                className="card_display"
+                className="card-display"
                 onClick={() => {
-                    setModalOpen(true)
+                    setModalOpen(true);
                     setSelectedCard(card);
-                }}>
-            Card name here
-        </div>)
+                }}
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                }}
+            >
+                <p>Card name here</p>
+            </div>)
     };
 
     const addCard = () => {
-        setCards([...cards, <Card />]);
+        setCards([...cards,
+            <Card
+                pages={[
+                    <Content className="front-content" />,
+                    <Content className="back-content" />,
+                    <Content className="front-content" />,
+                    <Content className="back-content" />
+                ]}
+            />
+        ]);
     };
 
     const handleModalClose = () => {
@@ -32,7 +48,7 @@ const Board = () => {
     return (
         <div className="board">
             {cards.map(card => displayCard(card))}
-            <button className="add_card_btn" onClick={addCard}>
+            <button className="add-card-btn" onClick={addCard}>
                 <IoIosAddCircle size={40} color="#D60200"/>
             </button>
             <Modal
@@ -61,7 +77,9 @@ const Board = () => {
                 <button
                     onClick={handleModalClose}
                     style={{
-                        alignSelf: "start"
+                        position: "absolute",
+                        top: 0,
+                        right: 0
                     }}
                 >
                     <IoIosCloseCircleOutline size={28} color="#ffffff"/>

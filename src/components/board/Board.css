@@ -11,13 +11,13 @@
     padding: 1.5em;
 }
 
-.card_display {
+.card-display {
     background-color: white;
     width: 200px;
     height: 250px;
 }
 
-.add_card_btn {
+.add-card-btn {
     width: 200px;
     height: 250px;
     background: #F7DEC7;
@@ -25,7 +25,7 @@
     margin: 0;
 }
 
-.modal_close {
+.modal-close {
     background-color: "#D60200";
     color: "white"
 }

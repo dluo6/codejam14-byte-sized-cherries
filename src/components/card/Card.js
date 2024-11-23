@@ -3,23 +3,22 @@ import "./Card.css"
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { useState } from "react";
 
-const Card = ({isAnimated}) => { 
+const Card = ({pages}) => { 
     const [curPage, setCurPage] = useState(0)
-    const [firstFlipped, setFirstFlipped] = useState(false)
-    const [secondFlipped, setSecondFlipped] = useState(false)
-    const [cardTransform, setCardTransform] = useState("translateX(0%")
-    const [prevBtnTransform, setPrevBtnTransform] = useState("translateX(0%)")
-    const [nextBtnTransform, setNextBtnTransform] = useState("translate(0%)")
+    const [firstFlipped, setFirstFlipped] = useState(false);
+    const [secondFlipped, setSecondFlipped] = useState(false);
+    const [cardTransform, setCardTransform] = useState("translateX(0%");
+    const [prevBtnTransform, setPrevBtnTransform] = useState("translateX(0%)");
+    const [nextBtnTransform, setNextBtnTransform] = useState("translate(0%)");
 
-    const front = () => <div id="f1" class="front-content">Front 1</div>
-    const insideLeft = () => <div id="b1" class="back-content">Inside Left</div>
-    const insideRight = () => <div id="f2" class="front-content">Inside Right</div>
-    const back = () => <div id="b2" class="back-content">Back</div>
+    const front = () => pages[0];
+    const insideLeft = () => pages[1];
+    const insideRight = () => pages[2];
+    const back = () => pages[3];
 
     const firstPage = () => {
         return (
             <div>
-                {curPage != 2 &&
                 <div id="p1" class={firstFlipped ? "flipped page" : "page"}>
                     <div class="front">
                         {front()}
@@ -27,7 +26,7 @@ const Card = ({isAnimated}) => {
                     <div class="back">
                         {insideLeft()}
                     </div>
-                </div>}
+                </div>
             </div>
         )
     }
@@ -35,7 +34,6 @@ const Card = ({isAnimated}) => {
     const secondPage = () => {
         return (
             <div>
-                {curPage != 0 &&
                 <div id="p2" class={secondFlipped ? "flipped page" : "page"}>
                     <div class="front">
                         {insideRight()}
@@ -44,7 +42,6 @@ const Card = ({isAnimated}) => {
                         {back()}
                     </div>
                 </div>
-                }
             </div>
         )
     }
@@ -63,36 +60,33 @@ const Card = ({isAnimated}) => {
             setCardTransform("translateX(0%)");
         } else {
             setCardTransform("translateX(100%)");
-            setSecondFlipped(false)
+            setSecondFlipped(false);
         }
-        console.log('setting button transform')
         setPrevBtnTransform("translateX(0px)");
         setNextBtnTransform("translateX(0px)");
-        // prevBtn.style.transform = "translateX(0px)";
-        // nextBtn.style.transform = "translateX(0px)";
     }
 
     const flipForward = () => {
         console.log('flipping forward')
         if (curPage == 0) {
             openBook();
-            setFirstFlipped(true)
+            setFirstFlipped(true);
         } else {
             closeBook(false);
-            setSecondFlipped(true)
+            setSecondFlipped(true);
         }
-        setCurPage(curPage + 1)
+        setCurPage(curPage + 1);
     };
 
     const flipBackward = () => {
         if (curPage == 1) {
-            closeBook(true)
-            setFirstFlipped(false)
+            closeBook(true);
+            setFirstFlipped(false);
         } else {
-            openBook()
-            setSecondFlipped(false)
+            openBook();
+            setSecondFlipped(false);
         }
-        setCurPage(curPage - 1)
+        setCurPage(curPage - 1);
     };
 
     const renderPage = () => {

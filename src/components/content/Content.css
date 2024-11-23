@@ -1,0 +1,21 @@
+.edit-button, .done-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border:medium dashed #EFC49B;
+    padding: 0.5em 0.75em;
+    border-radius: 10%;
+}
+
+.edit-button {
+    border: medium dashed #EFC49B;
+}
+
+.done-button {
+    border: medium solid green;
+}
+
+.editing {
+    border: thin dashed gray;
+    padding: 0.75em 1em;
+}
