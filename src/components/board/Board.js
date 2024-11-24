@@ -49,7 +49,7 @@ const Board = () => {
     return (
         <div className="board">
             <Link to="/boards">
-                <button className="back-button">Back to all boards</button>
+                <button className="all-button back-button">Back to all boards</button>
             </Link>
             {cards.map(card => displayCard(card))}
             <button className="add-card-btn" onClick={addCard}>

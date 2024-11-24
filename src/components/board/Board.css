@@ -2,10 +2,14 @@
     background-color: #D60200;
     color: white;
     border-radius: 5%;
+    padding: 0.5em 1em;
+    margin-bottom: 0;
+}
+
+.all-button {
     position: fixed;
     top: 0;
     left: 1rem;
-    padding: 0.5em 1em;
 }
 
 .board {
