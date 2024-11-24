@@ -1,14 +1,25 @@
+.back-button {
+    background-color: #D60200;
+    color: white;
+    border-radius: 5%;
+    position: fixed;
+    top: 0;
+    left: 1rem;
+    padding: 0.5em 1em;
+}
+
 .board {
     background-color: #EFC49B;
-    border: 1.5em solid #D8A87B;
-    min-height: 92vh;
+    border: 1.5rem solid #D8A87B;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1em;
-    margin: 1.5em;
-    padding: 1.5em;
+    gap: 1rem;
+    margin: 1.5rem;
+    margin-top: 4rem;;
+    padding: 1.5rem;
 }
 
 .card-display {
@@ -29,6 +40,6 @@
 }
 
 .modal-close {
-    background-color: "#D60200";
-    color: "white"
+    background-color: #D60200;
+    color: white;
 }

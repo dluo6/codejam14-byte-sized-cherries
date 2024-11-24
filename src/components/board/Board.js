@@ -4,6 +4,7 @@ import "./Board.css"
 import { useState } from "react";
 import Modal from 'react-modal';
 import Content from "../content/Content";
+import { Link } from "react-router-dom";
 
 const Board = () => {
     const [cards, setCards] = useState([]);
@@ -47,6 +48,9 @@ const Board = () => {
 
     return (
         <div className="board">
+            <Link to="/boards">
+                <button className="back-button">Back to all boards</button>
+            </Link>
             {cards.map(card => displayCard(card))}
             <button className="add-card-btn" onClick={addCard}>
                 <IoIosAddCircle size={40} color="#D60200"/>
@@ -55,21 +59,20 @@ const Board = () => {
                 isOpen={modalOpen}
                 style={{
                     overlay: {
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)'
                     },
                     content: {
                         display: 'flex',
-                        minHeight: '90vh',
                         background: 'none',
                         overflow: 'auto',
                         WebkitOverflowScrolling: 'touch',
                         outline: 'none',
                         border: 'none',
-                        padding: '2em'
+                        padding: 0
                     }
                 }}
             >
@@ -84,8 +87,8 @@ const Board = () => {
                 >
                     <IoIosCloseCircleOutline size={28} color="#ffffff"/>
                 </button>
-            </Modal>
-        </div>    
+            </Modal> 
+        </div>  
     );
 }
 
